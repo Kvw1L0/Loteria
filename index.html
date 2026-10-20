@@ -1,90 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lotería</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#009da9">
+  <title>Lotería | 82 años Hogar de Cristo</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap');
+    :root { --teal:#009da9; --deep:#087c86; --lime:#9acb00; --gold:#bd8737; --cream:#f6f0e4; --ink:#114e55; }
+    * { box-sizing:border-box; }
+    html { min-height:100%; }
     body {
-      font-family: 'Luckiest Guy', cursive;
-      background: url('fondo.png') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      min-height: 100vh;
-      padding-top: 150px;
+      margin:0; min-height:100svh; padding:24px 14px 44px;
+      display:flex; align-items:center; flex-direction:column;
+      font-family:'Nunito',sans-serif; color:var(--ink);
+      background:
+        radial-gradient(ellipse at -4% 0%,rgba(0,157,169,.24) 0 14%,transparent 14.3%),
+        radial-gradient(ellipse at 104% 96%,rgba(0,157,169,.16) 0 15%,transparent 15.3%),
+        radial-gradient(ellipse at 103% 4%,rgba(154,203,0,.23) 0 8%,transparent 8.3%),
+        repeating-linear-gradient(35deg,rgba(105,80,38,.017) 0 1px,transparent 1px 6px),
+        var(--cream);
     }
-    h1 {
-      color: white;
-      text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-    #grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 55px;
-    }
-    .cell {
-      width: 80px;
-      height: 80px;
-      background-color: #fff;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2em;
-      font-weight: bold;
-      cursor: pointer;
-      border: 4px solid transparent;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-    .cell.marked {
-      border-color: #01afff;
-      box-shadow: 0 0 10px #01afff, 0 0 20px #01afff;
-    }
-    #whatsappBtn {
-      margin-top: 8px;
-      padding: 12px 20px;
-      font-size: 1.2em;
-      background-color: #25d366;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      display: none;
-    }
-    /* Popup */
-    #popup {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(128, 0, 128, 0.8);
-      backdrop-filter: blur(5px);
-      display: flex; justify-content: center; align-items: center;
-      z-index: 9999;
-    }
-    #popupContent {
-      background: white; padding: 30px; border-radius: 15px; position: relative;
-      width: 90%; max-width: 400px; border: 4px solid orange;
-      box-shadow: 0 0 15px orange; animation: fadeIn 0.6s ease-in-out;
-    }
-    #popupContent h2 { font-size: 1.5em; margin-bottom: 15px; color: #6a1b9a; text-align: center; }
-    #popupContent input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc; }
-    #popupContent button { width: 100%; padding: 10px; background-color: purple; color: white; border: none; border-radius: 8px; cursor: pointer; }
-    #closePopup { position: absolute; top: 10px; right: 15px; font-size: 1.2em; cursor: pointer; }
-    @keyframes fadeIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    .brand { width:min(100%,500px); display:flex; align-items:center; justify-content:space-between; gap:14px; padding:4px 7px 14px; }
+    .anniversary { display:flex; align-items:baseline; gap:7px; white-space:nowrap; }
+    .anniversary strong { font-family:'Barlow Condensed',sans-serif; font-size:46px; line-height:1; font-weight:800; color:#b9893d; text-shadow:0 2px #fce8b7; }
+    .anniversary span { font-family:'Barlow Condensed',sans-serif; color:var(--teal); font-size:23px; font-weight:800; }
+    .brand-name { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:20px; line-height:.95; color:var(--deep); text-align:right; text-transform:uppercase; }
+    /* Substituir ambos wordmarks pelos logos oficiais aprovados quando os assets estiverem disponíveis. */
+    .panel { position:relative; isolation:isolate; width:min(100%,500px); border-radius:28px; padding:25px 22px 24px; background:rgba(255,255,255,.95); box-shadow:0 15px 45px rgba(0,105,117,.13); border:2px solid rgba(0,157,169,.18); overflow:hidden; text-align:center; }
+    .panel::before { content:''; position:absolute; top:0; left:0; right:0; height:8px; background:linear-gradient(90deg,var(--teal) 0 62%,var(--lime) 62% 78%,#d6a650 78%); }
+    .eyebrow { margin:8px 0 0; font-family:'Barlow Condensed',sans-serif; font-size:19px; letter-spacing:.13em; font-weight:800; color:var(--lime); text-transform:uppercase; }
+    h1 { margin:2px 0 0; font-family:'Barlow Condensed',sans-serif; font-size:clamp(45px,12vw,67px); letter-spacing:.025em; line-height:1; color:var(--teal); text-transform:uppercase; }
+    .instructions { font-size:14px; font-weight:800; margin:12px auto 5px; max-width:290px; color:#4a6767; }
+    #grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; width:min(100%,326px); margin:24px auto 18px; }
+    .cell { aspect-ratio:1; width:100%; border:3px solid #d9eeed; border-radius:18px; background:#fff; font:900 clamp(28px,9vw,45px) 'Nunito',sans-serif; color:var(--teal); cursor:pointer; box-shadow:0 5px 0 #d5e9e7; transition:background .15s,color .15s,transform .15s,box-shadow .15s; display:flex; align-items:center; justify-content:center; touch-action:manipulation; }
+    .cell:focus-visible,button:focus-visible { outline:4px solid var(--gold); outline-offset:3px; }
+    .cell:active { transform:scale(.96); }
+    .cell.marked { background:var(--teal); color:white; border-color:var(--lime); box-shadow:0 5px 0 var(--deep),0 0 0 2px rgba(154,203,0,.1); }
+    .progress { font-size:13px; font-weight:900; color:var(--deep); min-height:20px; }
+    #whatsappBtn { display:none; width:min(100%,326px); min-height:50px; margin:15px auto 0; padding:12px 20px; border:0; border-radius:14px; background:var(--lime); color:#174d51; font:900 16px 'Nunito',sans-serif; cursor:pointer; box-shadow:0 5px 0 #76a300; }
+    #whatsappBtn:active { transform:translateY(2px); box-shadow:0 3px 0 #76a300; }
+    .footer { margin:16px auto 0; font-size:12px; font-weight:800; color:var(--deep); text-align:center; opacity:.85; }
+    .ornament { position:fixed; z-index:-1; bottom:-26px; width:75px; height:115px; border-radius:50%; background:radial-gradient(circle at 28% 20%,#fff4b8 0,#edc877 17%,#b77924 55%,#e9c97a 80%); opacity:.65; pointer-events:none; transform:rotate(-18deg); }
+    .ornament.left { left:-18px; } .ornament.right { right:-18px; background:radial-gradient(circle at 30% 20%,#dfffff,#35cad2 28%,#008993 66%,#76dce0); transform:rotate(18deg); }
+    #popup { position:fixed; inset:0; background:rgba(0,88,95,.75); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; z-index:9999; }
+    #popupContent { position:relative; width:90%; max-width:400px; padding:30px; border-radius:20px; background:#fff; border:4px solid var(--teal); box-shadow:0 0 18px rgba(0,0,0,.2); }
+    #popupContent h2 { text-align:center; color:var(--deep); }
+    #popupContent input { width:100%; padding:12px; margin-bottom:12px; border:1px solid #bcc; border-radius:8px; }
+    #popupContent button { width:100%; padding:12px; background:var(--teal); border:0; color:white; border-radius:10px; font-weight:bold; cursor:pointer; }
+    #closePopup { position:absolute; top:10px; right:15px; cursor:pointer; }
+    @media(max-width:360px) { .panel { padding:22px 13px; } #grid { gap:9px; } .brand-name { font-size:16px; } .anniversary strong { font-size:39px; } }
+    @media(prefers-reduced-motion:reduce) { .cell { transition:none; } }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-  <!-- POPUP -->
- <!-- <div id="popup">
+  <header class="brand" aria-label="82 años Hogar de Cristo">
+    <div class="anniversary"><strong>82</strong><span>años</span></div>
+    <div class="brand-name">Hogar<br>de Cristo</div>
+  </header>
+  <main class="panel">
+    <p class="eyebrow">Aniversario 2026</p>
+    <h1>Lotería</h1>
+    <p class="instructions">Marca los 9 números de tu cartón para completar el desafío.</p>
+    <div id="grid" aria-label="Cartón de lotería"></div>
+    <div id="progress" class="progress" aria-live="polite">0 de 9 seleccionados</div>
+    <button id="whatsappBtn" onclick="sendWhatsApp()">Enviar por WhatsApp</button>
+  </main>
+  <p class="footer">82 años · Hogar de Cristo</p>
+  <div class="ornament left" aria-hidden="true"></div><div class="ornament right" aria-hidden="true"></div>
+
+  <!-- Formulario original desactivado: se conserva su integración opcional con Google Sheets.
+  <div id="popup">
     <div id="popupContent">
       <div id="closePopup">✖</div>
       <h2>Ingresa tus datos</h2>
@@ -92,15 +79,13 @@
       <input type="email" id="email" placeholder="Correo electrónico">
       <button onclick="submitData()">Comenzar</button>
     </div>
-  </div> -->
-
-  
-  <div id="grid"></div>
-  <button id="whatsappBtn" onclick="sendWhatsApp()">Enviar por WhatsApp</button>
+  </div>
+  -->
 
   <script>
     const grid = document.getElementById("grid");
     const whatsappBtn = document.getElementById("whatsappBtn");
+    const progress = document.getElementById("progress");
     const selectedNumbers = [];
     const numbers = [];
 
@@ -110,21 +95,27 @@
     }
 
     numbers.forEach((num) => {
-      const cell = document.createElement("div");
+      const cell = document.createElement("button");
+      cell.type = "button";
       cell.className = "cell";
       cell.textContent = num;
+      cell.setAttribute("aria-pressed", "false");
+      cell.setAttribute("aria-label", "Número " + num);
       cell.addEventListener("click", () => {
+        const wasComplete = selectedNumbers.length === 9;
         cell.classList.toggle("marked");
-        if (cell.classList.contains("marked")) {
+        const marked = cell.classList.contains("marked");
+        cell.setAttribute("aria-pressed", String(marked));
+        if (marked) {
           selectedNumbers.push(num);
         } else {
           const index = selectedNumbers.indexOf(num);
           if (index > -1) selectedNumbers.splice(index, 1);
         }
-        if (selectedNumbers.length === 9) {
-          launchConfetti();
-          whatsappBtn.style.display = "block";
-        }
+        const complete = selectedNumbers.length === 9;
+        progress.textContent = complete ? "¡Cartón completo!" : selectedNumbers.length + " de 9 seleccionados";
+        whatsappBtn.style.display = complete ? "block" : "none";
+        if (complete && !wasComplete) launchConfetti();
       });
       grid.appendChild(cell);
     });
@@ -132,52 +123,33 @@
     function sendWhatsApp() {
       const text = "¡Estos son mis números ganadores! " + selectedNumbers.join(", ");
       const url = "https://wa.me/56985749457?text=" + encodeURIComponent(text);
-      window.open(url, "_blank");
+      window.open(url, "_blank", "noopener,noreferrer");
     }
 
     function launchConfetti() {
-      const duration = 2000;
-      const end = Date.now() + duration;
-
+      if (typeof confetti !== "function") return;
+      const end = Date.now() + 2000;
       (function frame() {
-        confetti({
-          particleCount: 15,
-          angle: 60,
-          spread: 70,
-          origin: { x: 0 }
-        });
-        confetti({
-          particleCount: 15,
-          angle: 120,
-          spread: 70,
-          origin: { x: 1 }
-        });
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
+        confetti({ particleCount:15, angle:60, spread:70, origin:{x:0} });
+        confetti({ particleCount:15, angle:120, spread:70, origin:{x:1} });
+        if (Date.now() < end) requestAnimationFrame(frame);
       }());
     }
 
-    // POPUP FORM
+    // Integración opcional conservada; el formulario permanece desactivado.
     const popup = document.getElementById("popup");
     const closePopup = document.getElementById("closePopup");
-
-    closePopup.addEventListener("click", () => {
-      popup.style.display = "none";
-    });
+    if (closePopup && popup) closePopup.addEventListener("click", () => { popup.style.display = "none"; });
 
     function submitData() {
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-
+      const name = document.getElementById("name")?.value;
+      const email = document.getElementById("email")?.value;
+      if (!popup || name == null || email == null) return;
       fetch("https://script.google.com/macros/s/AKfycbzEO9OFX-VBVcBEyRfYdWejkIRg15ZzRmrZ1joik7s3O5a-LGpYQo1xgB_WXIcAxzRF/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`,
-      })
-      .then(() => {
-        popup.style.display = "none";
-      });
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email)
+      }).then(() => { popup.style.display = "none"; });
     }
   </script>
 </body>
